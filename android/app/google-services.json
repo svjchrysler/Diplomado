@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "980990111849",
+    "project_id": "diplomado-49eba",
+    "storage_bucket": "diplomado-49eba.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:980990111849:android:fed25fd6f9f35c78c3f2f8",
+        "android_client_info": {
+          "package_name": "com.diplomadoprimeraclase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "980990111849-1t53ui0cophkj69chf5cn5ppmpc9g6lv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTs4a7CdOm6KFogAAn5LC9P6TGF0RIM2k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "980990111849-1t53ui0cophkj69chf5cn5ppmpc9g6lv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
