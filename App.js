@@ -22,6 +22,8 @@ import {
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 
+import Product from './src/screens/Product'
+
 import LoginFunction from './src/screens/LoginFunction';
 
 const App = () => {
@@ -76,12 +78,9 @@ const App = () => {
   }
 
   return (
-    <SafeAreaView>
+    <SafeAreaView style={{flex: 1}}>
       <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <FlatList 
-        data={products}
-        renderItem={ItemProduct}
-      />
+      <Product />
     </SafeAreaView>
   );
 };
