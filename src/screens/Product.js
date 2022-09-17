@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 
 import {
   SafeAreaView,
@@ -9,18 +9,18 @@ import {
   useColorScheme,
   View,
   FlatList,
-  Image
+  Image,
 } from 'react-native';
 
-import ItemProduct from '../components/ItemProduct'
-import ModalProduct from '../components/ModalProduct'
+import ItemProduct from '../components/ItemProduct';
+import ModalProduct from '../components/ModalProduct';
 
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 
 const Product = () => {
   const [products, setProducts] = useState([]);
-  const [isVisible, setIsVisible] = useState(true)
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
     getProducts();
@@ -29,8 +29,7 @@ const Product = () => {
   const getProducts = () => {
     firestore()
       .collection('products')
-      .get()
-      .then(async fProducts => {
+      .onSnapshot(async fProducts => {
         let tempProducts = [];
         let promiseImages = [];
         fProducts.forEach(fProduct => {
@@ -52,18 +51,29 @@ const Product = () => {
   };
 
   const handleModal = () => {
-    setIsVisible(true)
+    setIsVisible(true);
+  };
+
+  const handleOnClose = () => {
+    setIsVisible(false)
   }
 
   return (
     <View>
-      <FlatList style={{ height: '95%' }} data={products} renderItem={ItemProduct} />
-      <Button style={{ height: '5%' }} title="Agregar Producto" onPress={handleModal} />
-      {isVisible &&
-        <ModalProduct />
-      }
+      <FlatList
+        style={{height: '95%'}}
+        data={products}
+        renderItem={ItemProduct}
+        keyExtractor={item => item.id}
+      />
+      <Button
+        style={{height: '5%'}}
+        title="Agregar Producto"
+        onPress={handleModal}
+      />
+      {isVisible && <ModalProduct onClose={handleOnClose} />}
     </View>
   );
 };
 
-export default Product
+export default Product;
