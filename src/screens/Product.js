@@ -18,9 +18,11 @@ import ModalProduct from '../components/ModalProduct';
 import firestore from '@react-native-firebase/firestore';
 import storage from '@react-native-firebase/storage';
 
-const Product = () => {
+const Product = (props) => {
   const [products, setProducts] = useState([]);
   const [isVisible, setIsVisible] = useState(false);
+
+  console.log('navigation', props)
 
   useEffect(() => {
     getProducts();
@@ -33,7 +35,7 @@ const Product = () => {
         let tempProducts = [];
         let promiseImages = [];
         fProducts.forEach(fProduct => {
-          tempProducts.push(fProduct.data());
+          tempProducts.push({...fProduct.data(), firebaseId: fProduct.id});
           promiseImages.push(
             storage().ref(fProduct.data().image).getDownloadURL(),
           );
@@ -45,6 +47,8 @@ const Product = () => {
         resultPromises.forEach((url, index) => {
           tempProducts[index].image = url;
         });
+
+        console.log('tempProducts', tempProducts)
 
         setProducts(tempProducts);
       });

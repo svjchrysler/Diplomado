@@ -1,15 +1,21 @@
 import React from 'react'
 
-import { View, Image, Text, StyleSheet } from 'react-native'
+import { View, Image, Text, StyleSheet, TouchableOpacity } from 'react-native'
 
+import * as RootNavigation from '../Utils/RootNavigation'
 
 const ItemProduct = ({item}) => {
+
+  const handleNavigation = () => {
+    RootNavigation.navigate('ProductDetail', {firestoreId: item.firebaseId, image: item.image})
+  }
+
   return (
-    <View style={styles.containerItem}>
+    <TouchableOpacity onPress={handleNavigation} style={styles.containerItem}>
       <Image source={{uri: item.image}} style={{width: 100, height: 100}} />
       <Text style={styles.itemProductName}>{item.name}</Text>
       <Text style={styles.itemProductPrice}>{item.price}Bs.</Text>
-    </View>
+    </TouchableOpacity>
   );
 };
 
