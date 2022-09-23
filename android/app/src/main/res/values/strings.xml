@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">DiplomadoPrimeraClase</string>
+    <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyDmCTko4p6VLqAkMzy_VApqlOemHY-qzPY</string>
 </resources>

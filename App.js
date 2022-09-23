@@ -6,7 +6,7 @@
  * @flow strict-local
  */
 
-import React, { useState, useEffect } from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   SafeAreaView,
   Button,
@@ -16,27 +16,41 @@ import {
   useColorScheme,
   View,
   FlatList,
-  Image
+  Image,
 } from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import {NavigationContainer} from '@react-navigation/native';
+import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Product from './src/screens/Product'
-import ProductDetail from './src/screens/ProductDetail'
+import Product from './src/screens/Product';
+import ProductDetail from './src/screens/ProductDetail';
 
-import { navigationRef } from './src/Utils/RootNavigation'
+import {navigationRef} from './src/Utils/RootNavigation';
 
+import {createMaterialBottomTabNavigator} from '@react-navigation/material-bottom-tabs';
+
+import Maps from './src/screens/Maps';
 
 const App = () => {
   const Stack = createNativeStackNavigator();
 
-  return (
-    <NavigationContainer ref={navigationRef}>
+  const Tab = createMaterialBottomTabNavigator();
+
+  const HomeStack = () => {
+    return (
       <Stack.Navigator>
         <Stack.Screen name="Products" component={Product} />
         <Stack.Screen name="ProductDetail" component={ProductDetail} />
       </Stack.Navigator>
+    );
+  };
+
+  return (
+    <NavigationContainer ref={navigationRef}>
+      <Tab.Navigator>
+        <Tab.Screen name="Home" component={HomeStack} />
+        <Tab.Screen name="Maps" component={Maps} />
+      </Tab.Navigator>
     </NavigationContainer>
   );
 };
